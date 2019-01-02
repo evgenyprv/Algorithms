@@ -1,5 +1,4 @@
-package main.datastructures;
-
+package main.datastructure;
 /**
 * This file represents a DoubleLinkedList data structure. It implements
 * List interface and uses Generics T for type of elements. 
