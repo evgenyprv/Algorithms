@@ -1,4 +1,4 @@
-package main.datastructures.implementation;
+package main.datastructure.implementation;
 
 /**
 * This file represents a DoubleLinkedList data structure. It implements
@@ -9,7 +9,7 @@ package main.datastructures.implementation;
 *
 */
 
-import main.datastructures.List;
+import main.datastructure.List;
 
 
 public class LinkedList<T> implements List<T>{

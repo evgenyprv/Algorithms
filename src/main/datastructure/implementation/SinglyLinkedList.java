@@ -1,5 +1,4 @@
-package main.datastructures.implementation;
-
+package main.datastructure.implementation;
 /**
 * This file represents a DoubleLinkedList data structure. It implements
 * List interface and uses Generics T for type of elements. 
@@ -9,7 +8,7 @@ package main.datastructures.implementation;
 *
 */
 
-import main.datastructures.List;
+import main.datastructure.List;
 
 
 public class SinglyLinkedList<T> implements List<T>{
