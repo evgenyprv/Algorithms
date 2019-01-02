@@ -4,7 +4,7 @@ package main.datastructures.implementation;
 * This file represents a DoubleLinkedList data structure. It implements
 * List interface and uses Generics T for type of elements. 
 *
-* @author: Evgeny Prokoptsov
+* @author: ev_prv
 * @since: 30 December 2018
 *
 */
