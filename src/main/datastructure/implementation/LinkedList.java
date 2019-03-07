@@ -17,7 +17,7 @@ public class LinkedList<T> implements List<T>{
 
 	public class Node<T>{
 
-		/** Visual Represenation of Node
+		/** Visual Representation of Node
 		*	_________________
 		*	| 	|	   |	|
 		*	| P | Elem | N	|
@@ -70,12 +70,12 @@ public class LinkedList<T> implements List<T>{
 
 		/** Setter for element.
 		*
-		* @param: T elem
+		* @param: T newElement
 		* @return: Nothing
 		*
 		*/
 
-		public void setElement(T elem){element = elem;}
+		public void setElement(T newElement){element = newElement;}
 
 		/** Setter for previous Node.
 		*
@@ -217,7 +217,7 @@ public class LinkedList<T> implements List<T>{
 	/**  Helper Method for remove(T element) Method. Finds the node that 
 	* has the T element. 
 	*
-	* @param: T elem
+	* @param: T element
 	* @return: Node<T> node
 	*
 	*/
@@ -234,7 +234,7 @@ public class LinkedList<T> implements List<T>{
 		return iter;
 	}
 
-	/**  Method that returns the string represtation of the list. Helpful 
+	/**  Method that returns the string representation of the list. Helpful 
 	* in debugging.
 	*
 	* @param: Nothing
