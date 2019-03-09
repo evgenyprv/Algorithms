@@ -7,7 +7,7 @@ public class BinaryHeap<V extends Comparable> implements PriorityQueue<V> {
 	
 	private int size;
 	private ArrayList<HeapEntry<V>> heap;
-	
+
 	@SuppressWarnings("hiding")
 	public class HeapEntry<V extends Comparable>{
 		
@@ -35,7 +35,6 @@ public class BinaryHeap<V extends Comparable> implements PriorityQueue<V> {
 
 	@Override
 	public V peek() {return heap.get(0).getValue();}
-	
 	
 	public int left(int index) {
 		return 2 * index + 1;
@@ -76,7 +75,8 @@ public class BinaryHeap<V extends Comparable> implements PriorityQueue<V> {
 		}
 
 	}
-
+	
+	@Override
 	public V remove() {
 		V result = heap.get(0).getValue();
 		heap.set(0, heap.remove(--size));

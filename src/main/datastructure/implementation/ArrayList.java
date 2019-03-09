@@ -7,13 +7,17 @@ public class ArrayList<E> {
 	private int size;
 	
 	public ArrayList() {this(ARRAY_SIZE);}
+	
+	@SuppressWarnings("unchecked")
 	public ArrayList(int array_size) {
 		array = (E[]) new Object[ARRAY_SIZE];
 		this.size = 0;
 	}
 	
 	public int size() {return size;}
+	
 	public boolean isEmpty() {return size == 0;}
+	
 	public E get(int index) {
 		checkIndex(index);
 		return array[index];
@@ -31,6 +35,7 @@ public class ArrayList<E> {
 		array[index] = element;
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void resize() {
 		E[] temp = (E[]) new Object[size * 2];
 		for(int i = 0; i  < size; i++) {
