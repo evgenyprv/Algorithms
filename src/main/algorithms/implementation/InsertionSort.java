@@ -1,5 +1,7 @@
 package main.algorithms.implementation;
 
+import java.util.Comparator;
+
 /**
 * This file represents a MergeSort algorithm. It implements
 * SortAlgoritms interface. 
@@ -11,23 +13,24 @@ package main.algorithms.implementation;
 
 import main.algorithms.SortAlgorithms;
 
-public class InsertionSort implements SortAlgorithms {
+
+public class InsertionSort<V> implements SortAlgorithms<V>, Comparator<V> {
 	
 	/**	Sorting method. 
 	 * 
-	 * @param: int[] unsorted_array
-	 * @return: int[] array
+	 * @param: V[] unsorted_array
+	 * @return: V[] array
 	 * 
 	 */
 	
 	@Override
-	public int[] sort(int[] unsorted_array) {
+	public V[] sort(V[] unsorted_array) {
 		int len = unsorted_array.length;
 		for(int i = 0; i < len; i++) {
-			int key = unsorted_array[i];
+			V key = unsorted_array[i];
 			int j = i - 1;
 			
-			while (j >= 0 && (key <= unsorted_array[j])) {
+			while (j >= 0 && (compare(key,unsorted_array[j]) <=0 )) {
 				unsorted_array[j + 1] = unsorted_array[j];
 				j--;
 			}
@@ -35,6 +38,17 @@ public class InsertionSort implements SortAlgorithms {
 		}
 		
 		return unsorted_array;
+	}
+
+	@Override
+	public int compare(V o1, V o2) {
+		if(Math.abs(o1.hashCode()) < Math.abs(o2.hashCode())) {
+			return -1;
+		}else if(Math.abs(o1.hashCode())  > Math.abs(o2.hashCode())) {
+			return 1;
+		}else {
+			return 0;
+		}
 	}
 
 }
