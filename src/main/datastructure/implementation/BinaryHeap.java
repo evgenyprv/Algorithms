@@ -1,15 +1,16 @@
 package main.datastructure.implementation;
 
+import java.util.Comparator;
+
 import main.datastructure.PriorityQueue;
 
-@SuppressWarnings("rawtypes")
-public class BinaryHeap<V extends Comparable> implements PriorityQueue<V> {
+public class BinaryHeap<V> implements PriorityQueue<V>, Comparator<V> {
 	
 	private int size;
 	private ArrayList<HeapEntry<V>> heap;
 
 	@SuppressWarnings("hiding")
-	public class HeapEntry<V extends Comparable>{
+	public class HeapEntry<V>{
 		
 		private V value;
 		
@@ -65,11 +66,10 @@ public class BinaryHeap<V extends Comparable> implements PriorityQueue<V> {
 		upHeapify(this.size()-1);
 	}
 	
-	@SuppressWarnings("unchecked")
 	private void upHeapify(int child) {
 		int parent = parent(child);
 
-		if (!(heap.get(parent).getValue().compareTo(heap.get(child).getValue()) <= 0)){
+		if (!(compare(heap.get(parent).getValue(),heap.get(child).getValue()) <= 0)){
 			swap(parent, child);
 			upHeapify(parent);
 		}
@@ -83,18 +83,17 @@ public class BinaryHeap<V extends Comparable> implements PriorityQueue<V> {
 		downHeapify(0);
 		return result;
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	private void downHeapify(int parent) {
 		if(!isLeaf(parent)) {
 		
-			if(heap.get(this.left(parent)).getValue().compareTo(heap.get(parent).getValue()) < 0){
+			if(compare(heap.get(this.left(parent)).getValue(),heap.get(parent).getValue()) < 0){
 				int left = this.left(parent);
 				swap(parent, left);
 				downHeapify(left);
 			}
 			
-			if(heap.get(parent).getValue().compareTo(heap.get(this.right(parent)).getValue()) > 0){
+			if(compare(heap.get(parent).getValue(),heap.get(this.right(parent)).getValue()) > 0){
 				int right = this.right(parent);
 				swap(parent, right);
 				downHeapify(right);
@@ -124,5 +123,16 @@ public class BinaryHeap<V extends Comparable> implements PriorityQueue<V> {
 			result += heap.get(i).getValue() + ", ";
 		}
 		return result;
+	}
+
+	@Override
+	public int compare(V o1, V o2) {
+		if(Math.abs(o1.hashCode()) < Math.abs(o2.hashCode())) {
+			return -1;
+		}else if(Math.abs(o1.hashCode())  > Math.abs(o2.hashCode())) {
+			return 1;
+		}else {
+			return 0;
+		}
 	}
 }
