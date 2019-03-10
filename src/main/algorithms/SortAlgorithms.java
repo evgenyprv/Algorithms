@@ -1,5 +1,6 @@
 package main.algorithms;
 
+
 /**
 * This file represents a interface for Sorting Algorithms.
 *
@@ -8,14 +9,15 @@ package main.algorithms;
 *
 */
 
-public interface SortAlgorithms {
+public interface SortAlgorithms<V> {
 	
 	/**	Sorting method. 
 	 * 
-	 * @param: int[] unsorted_array
-	 * @return: int[] array
+	 * @param: V[] unsorted_array
+	 * @return: V[] array
 	 * 
 	 */
 	
-	public int[] sort(int[] unsorted_array);
+	public V[] sort(V[] unsorted_array);
+
 }

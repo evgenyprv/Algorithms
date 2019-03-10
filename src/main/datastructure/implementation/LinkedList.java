@@ -15,6 +15,7 @@ import main.datastructure.List;
 public class LinkedList<T> implements List<T>{
 	
 
+	@SuppressWarnings("hiding")
 	public class Node<T>{
 
 		/** Visual Representation of Node
@@ -246,7 +247,7 @@ public class LinkedList<T> implements List<T>{
 		Node<T> iter = head.getNext();
 		String result = "";
 
-		while(iter.getElement() != null){
+		while(iter != null && iter.getElement() != null){
 			result += "Prev: " + iter.getPrev().getElement() + 
 				" Current: " + iter.getElement() + 
 				" Next: " + iter.getNext().getElement() + "\n";

@@ -1,5 +1,7 @@
 package main.algorithms.implementation;
 
+import java.util.Comparator;
+
 /**
 * This file represents a MergeSort algorithm. It implements SortAlgoritms interface. 
 *
@@ -10,35 +12,38 @@ package main.algorithms.implementation;
 
 import main.algorithms.SortAlgorithms;
 
-public class MergeSort implements SortAlgorithms{
+
+public class MergeSort<V> implements SortAlgorithms<V>, Comparator<V>{
 
 	/**	Sorting method. Uses merge() method as a helper. 
 	 * 
-	 * @param: int[] unsorted_array
-	 * @return: int[] array
+	 * @param: V[] unsorted_array
+	 * @return: V[] array
 	 * 
 	 */
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public int[] sort(int[] unsorted_array){
+	public V[] sort(V[] unsorted_array){
 		if(unsorted_array.length <= 10) {
 			SortAlgorithms insertionSort = new InsertionSort();
-			return insertionSort.sort(unsorted_array);
+			return (V[]) insertionSort.sort(unsorted_array);
 		}
 		
 		if(unsorted_array.length == 1){
 			return unsorted_array;
 		}else{
 			int middle = (unsorted_array.length) / 2;
-			int[] left_array = new int[middle];
-			int[] right_array = new int[unsorted_array.length - middle];
+			V[] left_array = (V[]) new Object[middle];
+			V[] right_array = (V[]) new Object[unsorted_array.length - middle];
 			for(int i = 0; i < left_array.length; i++){
 				left_array[i] = unsorted_array[i];
 			}
 			for(int j = 0; j < right_array.length; j++){
 				right_array[j] = unsorted_array[middle + j];
 			}
-			return merge(sort(left_array), sort(right_array));
+			merge(sort(left_array), sort(right_array), unsorted_array);
+			return unsorted_array;
 		}
 
 	}
@@ -46,29 +51,42 @@ public class MergeSort implements SortAlgorithms{
 	/**	Merge method that merges two unsorted arrays together. Acts as a helper 
 	 * to sort() method.  
 	 * 
-	 * @param: int[] left_array, int[] right_array
-	 * @return: int[] array
+	 * @param: V[] left_array, V[] right_array
+	 * @return: V[] array
 	 * 
 	 */
-	
-	public int[] merge(int[] left_array, int[] right_array){
 
-		int[] result = new int[left_array.length + right_array.length];
+	public V[] merge(V[] left_array, V[] right_array, V[] unsorted_array){
+
         int i = 0, j = 0;
-        for (int k = 0; k < result.length; k++) {
+        for (int k = 0; k < unsorted_array.length; k++) {
             if(i >= left_array.length) {
-            	result[k] = right_array[j++];
+            	unsorted_array[k] = right_array[j++];
             }
             else if (j >= right_array.length) {
-            	result[k] = left_array[i++];
+            	unsorted_array[k] = left_array[i++];
             }
-            else if ((left_array[i]) <=  right_array[j]){ 
-            	result[k] = left_array[i++];
+            else if (compare(left_array[i],right_array[j]) <= 0){ 
+            	unsorted_array[k] = left_array[i++];
             }
             else {
-            	result[k] = right_array[j++];
+            	unsorted_array[k] = right_array[j++];
             }
         }
-        return result;
+        return unsorted_array;
 	}
+
+
+	@Override
+	public int compare(V o1, V o2) {
+		if(Math.abs(o1.hashCode()) < Math.abs(o2.hashCode())) {
+			return -1;
+		}else if(Math.abs(o1.hashCode())  > Math.abs(o2.hashCode())) {
+			return 1;
+		}else {
+			return 0;
+		}
+	}
+
+
 }

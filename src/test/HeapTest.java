@@ -33,7 +33,6 @@ public class HeapTest {
 		for(int i = 0; i < 6; i++) {
 			int value = random.nextInt(alphabet.length-1);
 			testHeap.add(alphabet[value]);
-			System.out.println(alphabet[value]);
 		}
 		
 		System.out.println(testHeap.toString());
