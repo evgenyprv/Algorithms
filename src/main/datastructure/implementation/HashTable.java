@@ -52,9 +52,11 @@ public class HashTable<E> {
         int tableKey = hash(element);
 
         return Optional.ofNullable(table[tableKey])
-                .map(bucket -> { checkBucketSize(bucket, tableKey);
-                                size--;
-                                return bucket.removeFirst();})
+                .map(bucket -> {
+                    if(checkBucketSize(bucket, tableKey)){
+                        size--;
+                    }
+                    return bucket.remove(element);})
                 .orElse(null);
     }
 
@@ -76,10 +78,12 @@ public class HashTable<E> {
         }
     }
 
-    private void checkBucketSize(LinkedList<E> bucket, int tableKey){
+    private boolean checkBucketSize(LinkedList<E> bucket, int tableKey){
         if(bucket.size() == 1){
             table[tableKey] = null;
+            return true;
         }
+        return false;
     }
 
     /***
