@@ -39,9 +39,9 @@ public class HashTable<E> {
                     LinkedList<E> bucket = new LinkedList<>();
                     bucket.addFirst(element);
                     table[tableKey] = bucket;
+                    size++;
                     return element;
                 });
-        size++;
         return e;
     }
 
@@ -53,7 +53,8 @@ public class HashTable<E> {
 
         return Optional.ofNullable(table[tableKey])
                 .map(bucket -> { checkBucketSize(bucket, tableKey);
-                                return bucket.remove(element);})
+                                size--;
+                                return bucket.removeFirst();})
                 .orElse(null);
     }
 
