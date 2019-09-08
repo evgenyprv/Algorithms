@@ -21,8 +21,7 @@ public class MergeSort<V> implements SortAlgorithms<V>, Comparator<V>{
 	 * @return: V[] array
 	 * 
 	 */
-	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+
 	@Override
 	public V[] sort(V[] unsorted_array){
 		if(unsorted_array.length <= 10) {
