@@ -27,28 +27,28 @@ public interface List<T>{
 	*/
 
 	public boolean isEmpty();
-	
-	/**  Method that adds a new element to the beginning 
-	* of the list. 
+
+	/**  Method that adds a new element to the beginning
+	* of the list.
 	*
 	* @param: T elem
 	* @return: Nothing
 	*
 	*/
 
-	public void addFirst(T elem);
+	public T addFirst(T elem);
 
-	/**  Method that adds a new element at the end of the list. 
+	/**  Method that adds a new element at the end of the list.
 	*
 	* @param: T elem
 	* @return: Nothing
 	*
 	*/
 
-	public void addLast(T elem);
+	public T addLast(T elem);
 
 
-	/**  Method that removes an element at the beginning of the list. 
+	/**  Method that removes an element at the beginning of the list.
 	*
 	* @param: Nothing
 	* @return: T element
@@ -58,7 +58,7 @@ public interface List<T>{
 	public T removeFirst();
 
 	/**  Method that removes an element at the end
-	* of the list. 
+	* of the list.
 	*
 	* @param: Nothing
 	* @return: T element

@@ -2,28 +2,30 @@ package main.datastructure.implementation;
 
 import java.util.Comparator;
 
+import main.datastructure.Entry;
 import main.datastructure.PriorityQueue;
 
-public class BinaryHeap<V> implements PriorityQueue<V>, Comparator<V> {
+public class Heap<K, V> implements PriorityQueue<K, V>, Comparator<V> {
 	
 	private int size;
-	private ArrayList<HeapEntry<V>> heap;
+	private ArrayList<HeapEntry<K, V>> heap;
 
-	@SuppressWarnings("hiding")
-	public class HeapEntry<V>{
+	public class HeapEntry<K, V> implements Entry<K,V> {
 		
 		private V value;
+		private K key;
 		
-		public HeapEntry(V value) {
+		public HeapEntry(K key, V value) {
+			this.key = key;
 			this.value = value;
 		}
 
-		public V getValue() {return value;}		
-	}
-	
-	public BinaryHeap() {this(0);}
+		public K getKey() {return key;}
+		public V getValue() {return value;}
 
-	public BinaryHeap(int flag) {
+	}
+
+	public Heap() {
 		heap = new ArrayList<>();
 		size = 0;
 	}
@@ -35,7 +37,7 @@ public class BinaryHeap<V> implements PriorityQueue<V>, Comparator<V> {
 	public boolean isEmpty() {return size == 0;}
 
 	@Override
-	public V peek() {return heap.get(0).getValue();}
+	public Entry<K,V> peek() {return heap.get(0);}
 	
 	public int left(int index) {
 		return 2 * index + 1;
@@ -59,8 +61,8 @@ public class BinaryHeap<V> implements PriorityQueue<V>, Comparator<V> {
 	}
 	
 	@Override
-	public void add(V value) {
-		HeapEntry<V> newEntry = new HeapEntry<>(value);
+	public void add(K key, V value) {
+		HeapEntry<K, V> newEntry = new HeapEntry<>(key, value);
 		heap.add(newEntry);
 		size++;
 		upHeapify(this.size()-1);
@@ -77,8 +79,8 @@ public class BinaryHeap<V> implements PriorityQueue<V>, Comparator<V> {
 	}
 	
 	@Override
-	public V remove() {
-		V result = heap.get(0).getValue();
+	public Entry<K, V> remove() {
+		HeapEntry<K, V> result = heap.get(0);
 		heap.set(0, heap.remove(--size));
 		downHeapify(0);
 		return result;
@@ -102,12 +104,10 @@ public class BinaryHeap<V> implements PriorityQueue<V>, Comparator<V> {
 	}
 	
 	private void swap(int parentId, int childId) {
-		HeapEntry<V> parent = heap.get(parentId);
-		HeapEntry<V> child = heap.get(childId);
+		HeapEntry<K, V> parent = heap.get(parentId);
+		HeapEntry<K, V> child = heap.get(childId);
 		heap.set(parentId, child);
 		heap.set(childId, parent);
-		parent = null;
-		child = null;
 	}
 	
 	public String toString() {

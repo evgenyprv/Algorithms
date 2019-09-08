@@ -134,11 +134,11 @@ public class LinkedList<T> implements List<T>{
 	*
 	*/
 
-	public void addFirst(T elem){
+	public T addFirst(T elem){
 		if(this.isEmpty()){
-			add(elem, head, head);
+			return add(elem, head, head);
 		}	
-		add(elem, head, head.getNext());
+		return add(elem, head, head.getNext());
 	}
 
 
@@ -149,11 +149,11 @@ public class LinkedList<T> implements List<T>{
 	*
 	*/
 
-	public void addLast(T elem){
+	public T addLast(T elem){
 		if(this.isEmpty()){
-			add(elem, head, head);
+			return add(elem, head, head);
 		}
-		add(elem, head.getPrev(), head);
+		return add(elem, head.getPrev(), head);
 	}
 
 	/**  Method that adds a new element between two nodes of the list. 
@@ -163,11 +163,12 @@ public class LinkedList<T> implements List<T>{
 	*
 	*/
 
-	public void add(T elem, Node<T> previous, Node<T> next){
+	public T add(T elem, Node<T> previous, Node<T> next){
 		Node<T> newNode = new Node<>(elem, previous, next);
 		previous.setNext(newNode);
 		next.setPrev(newNode);
 		size++;
+		return newNode.getElement();
 	}
 
 	/**  Method that removes an element at the beginning of the list. 

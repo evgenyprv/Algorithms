@@ -118,7 +118,7 @@ public class SinglyLinkedList<T> implements List<T>{
 	*
 	*/
 
-	public void addFirst(T elem){
+	public T addFirst(T elem){
 		Node<T> newNode = new Node<>(elem, null);
 
 		if(isEmpty()){
@@ -130,6 +130,7 @@ public class SinglyLinkedList<T> implements List<T>{
 
 		tail = newNode;
 		size++;
+		return newNode.getElement();
 	}
 
 	/**  Method that adds a new element at the end of the list. 
@@ -139,7 +140,7 @@ public class SinglyLinkedList<T> implements List<T>{
 	*
 	*/
 
-	public void addLast(T elem){
+	public T addLast(T elem){
 		Node<T> newNode = new Node<>(elem, null);
 
 		if(isEmpty()){
@@ -150,6 +151,8 @@ public class SinglyLinkedList<T> implements List<T>{
 
 		tail = newNode;
 		size++;
+
+		return newNode.getElement();
 	}
 
 	/**  Method that removes an element at the beginning of the list. 

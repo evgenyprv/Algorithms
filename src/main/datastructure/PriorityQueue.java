@@ -1,10 +1,10 @@
 package main.datastructure;
 
-public interface PriorityQueue<V> {
+public interface PriorityQueue<K, V> {
 	
-	public int size();
-	public boolean isEmpty();
-	public V peek();
-	public V remove();
-	public void add(V value);
+	int size();
+	boolean isEmpty();
+	Entry<K, V> peek();
+	Entry<K, V> remove();
+	void add(K key, V value);
 }
